@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.yoshisuproject</groupId>
+  <artifactId>mybatis-generator-plugin</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>mybatis-generator-plugin</name>
+  <description>mybatis generator plugin</description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+      <version>1.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>4.5.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>2.30.0</version>
+        <configuration>
+          <lineEndings>UNIX</lineEndings>
+          <formats>
+            <format>
+              <includes>
+                <include>*.md</include>
+                <include>.gitignore</include>
+              </includes>
+              <trimTrailingWhitespace />
+              <endWithNewline />
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
+            </format>
+          </formats>
+          <java>
+            <includes>
+              <include>src/main/java/**/*.java</include>
+              <include>src/test/java/**/*.java</include>
+            </includes>
+            <palantirJavaFormat />
+            <indent>
+              <spaces>true</spaces>
+              <spacesPerTab>4</spacesPerTab>
+            </indent>
+            <importOrder>
+              <order>java,javax,org,com,\\#</order>
+            </importOrder>
+            <removeUnusedImports />
+            <formatAnnotations />
+          </java>
+          <pom>
+            <includes>
+              <include>pom.xml</include>
+            </includes>
+            <sortPom>
+              <expandEmptyElements>false</expandEmptyElements>
+              <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+              <sortProperties>true</sortProperties>
+            </sortPom>
+          </pom>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

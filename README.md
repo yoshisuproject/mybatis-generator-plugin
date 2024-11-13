@@ -1,6 +1,6 @@
 ## MyBatis Generator Plugin
 
-Here are two plugins for MyBatis Generator
+Here are three plugins for MyBatis Generator
 
 -   ### LineSeparatorPlugin
 
@@ -33,6 +33,22 @@ Here are two plugins for MyBatis Generator
         -   `BRACE` : use `{` and `}`
         -   `THAN_SIGN` : use `<` and `>`
 
+-   ### OptionalPlugin
+
+    This plugin generates additional methods that return `Optional<T>` for select operations.
+
+    For example, if you have a method `User selectByPrimaryKey(Long id)`,
+    it will generate an additional method `Optional<User> selectOptionalByPrimaryKey(Long id)`.
+
+    -   optionalMethodPrefix (optional): The prefix for the generated Optional method
+        -   Default value: "selectOptional"
+        -   Example: If set to "findOptional", the generated method would be `Optional<User> findOptionalByPrimaryKey(Long id)`
+
+    This plugin will:
+    -   Generate Optional methods for single-result select operations
+    -   Skip List-return-type methods
+    -   Automatically import java.util.Optional
+
 ## Example
 
 ```xml
@@ -47,6 +63,9 @@ Here are two plugins for MyBatis Generator
         </plugin>
         <plugin type="com.yoshisu.mybatis.generator.plugin.ToStringWithoutSerialVersionUidPlugin">
             <property name="openSign" value="("/>
+        </plugin>
+        <plugin type="com.yoshisu.mybatis.generator.plugin.OptionalPlugin">
+            <property name="optionalMethodPrefix" value="findOptional"/>
         </plugin>
         <!-- other settings -->
     </context>
